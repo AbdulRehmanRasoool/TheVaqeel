@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DB0BE598-4645-4CDE-A4DB-6A796596BC8A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TheVaqeel.Website</RootNamespace>
+    <AssemblyName>TheVaqeel.Website</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44346</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.2.2\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.2.2\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.2.2\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.2.2\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LawyerController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307131000123_AddIdentityTablesAndHomeNavbarTable.cs" />
+    <Compile Include="Migrations\202307131000123_AddIdentityTablesAndHomeNavbarTable.designer.cs">
+      <DependentUpon>202307131000123_AddIdentityTablesAndHomeNavbarTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307132115294_AddHomeSliderTable.cs" />
+    <Compile Include="Migrations\202307132115294_AddHomeSliderTable.designer.cs">
+      <DependentUpon>202307132115294_AddHomeSliderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307161041046_AddFaqsTable.cs" />
+    <Compile Include="Migrations\202307161041046_AddFaqsTable.designer.cs">
+      <DependentUpon>202307161041046_AddFaqsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307181508046_AddLawyerServiceContentTable.cs" />
+    <Compile Include="Migrations\202307181508046_AddLawyerServiceContentTable.designer.cs">
+      <DependentUpon>202307181508046_AddLawyerServiceContentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307191753564_AddLocationColumnInHomeNavbarTable.cs" />
+    <Compile Include="Migrations\202307191753564_AddLocationColumnInHomeNavbarTable.designer.cs">
+      <DependentUpon>202307191753564_AddLocationColumnInHomeNavbarTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307262206517_AddStatusColumnInAspNetUsersTable.cs" />
+    <Compile Include="Migrations\202307262206517_AddStatusColumnInAspNetUsersTable.designer.cs">
+      <DependentUpon>202307262206517_AddStatusColumnInAspNetUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307281945335_AddIsValidColumnInAspNetUsersTable.cs" />
+    <Compile Include="Migrations\202307281945335_AddIsValidColumnInAspNetUsersTable.designer.cs">
+      <DependentUpon>202307281945335_AddIsValidColumnInAspNetUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307282010073_AddLawyerLocationAndLawyerPracticeAreasTable.cs" />
+    <Compile Include="Migrations\202307282010073_AddLawyerLocationAndLawyerPracticeAreasTable.designer.cs">
+      <DependentUpon>202307282010073_AddLawyerLocationAndLawyerPracticeAreasTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307282017055_AddLawyerDetailTable.cs" />
+    <Compile Include="Migrations\202307282017055_AddLawyerDetailTable.designer.cs">
+      <DependentUpon>202307282017055_AddLawyerDetailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307292031083_ChangeTypeOfExperienceInYears.cs" />
+    <Compile Include="Migrations\202307292031083_ChangeTypeOfExperienceInYears.designer.cs">
+      <DependentUpon>202307292031083_ChangeTypeOfExperienceInYears.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307292038342_RemoveExperienceInYearsColumnInLawyerDetailTable.cs" />
+    <Compile Include="Migrations\202307292038342_RemoveExperienceInYearsColumnInLawyerDetailTable.designer.cs">
+      <DependentUpon>202307292038342_RemoveExperienceInYearsColumnInLawyerDetailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307312049009_AddContactUsTable.cs" />
+    <Compile Include="Migrations\202307312049009_AddContactUsTable.designer.cs">
+      <DependentUpon>202307312049009_AddContactUsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308011542039_AddTimeSlotTable.cs" />
+    <Compile Include="Migrations\202308011542039_AddTimeSlotTable.designer.cs">
+      <DependentUpon>202308011542039_AddTimeSlotTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308011645273_AddAppointmentTable.cs" />
+    <Compile Include="Migrations\202308011645273_AddAppointmentTable.designer.cs">
+      <DependentUpon>202308011645273_AddAppointmentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308011656334_AddUserIdColumnInAppointmentTable.cs" />
+    <Compile Include="Migrations\202308011656334_AddUserIdColumnInAppointmentTable.designer.cs">
+      <DependentUpon>202308011656334_AddUserIdColumnInAppointmentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308011725488_AddStatusColumnInAppointmentTable.cs" />
+    <Compile Include="Migrations\202308011725488_AddStatusColumnInAppointmentTable.designer.cs">
+      <DependentUpon>202308011725488_AddStatusColumnInAppointmentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308052145254_ChangeDateTimeInTimeSlotTable.cs" />
+    <Compile Include="Migrations\202308052145254_ChangeDateTimeInTimeSlotTable.designer.cs">
+      <DependentUpon>202308052145254_ChangeDateTimeInTimeSlotTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\Faqs.cs" />
+    <Compile Include="Models\HomeNavbar.cs" />
+    <Compile Include="Models\HomeSlider.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LawyerDetail.cs" />
+    <Compile Include="Models\LawyerLocation.cs" />
+    <Compile Include="Models\LawyerPracticeAreas.cs" />
+    <Compile Include="Models\LawyerServiceContent.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TheVaqeelDbInitializer.cs" />
+    <Compile Include="Models\TimeSlot.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\adminlte.min.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\default.css" />
+    <Content Include="Content\css\magnific-popup.css" />
+    <Content Include="Content\css\nice-select.css" />
+    <Content Include="Content\css\OverlayScrollbars.css" />
+    <Content Include="Content\css\slick.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\flaticon\flaticon.css" />
+    <Content Include="Content\fonts\flaticon\flaticonef10ef10.html" />
+    <Content Include="Content\fonts\flaticon\Trident\index.html" />
+    <Content Include="Content\fonts\fontawesome\css\all.min.css" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-brands-400.html" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-light-300.html" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-regular-400.html" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-solid-900.html" />
+    <Content Include="Content\fonts\fontawesome\webfonts\Trident\index.html" />
+    <Content Include="Content\img\about\1.jpg" />
+    <Content Include="Content\img\about\2.jpg" />
+    <Content Include="Content\img\about\3.jpg" />
+    <Content Include="Content\img\about\4.jpg" />
+    <Content Include="Content\img\AdminImage\AdminLTELogo.png" />
+    <Content Include="Content\img\AdminImage\avatar.png" />
+    <Content Include="Content\img\AdminImage\avatar2.png" />
+    <Content Include="Content\img\AdminImage\avatar3.png" />
+    <Content Include="Content\img\AdminImage\avatar4.png" />
+    <Content Include="Content\img\AdminImage\avatar5.png" />
+    <Content Include="Content\img\AdminImage\boxed-bg.jpg" />
+    <Content Include="Content\img\AdminImage\boxed-bg.png" />
+    <Content Include="Content\img\AdminImage\credit\american-express.png" />
+    <Content Include="Content\img\AdminImage\credit\cirrus.png" />
+    <Content Include="Content\img\AdminImage\credit\mastercard.png" />
+    <Content Include="Content\img\AdminImage\credit\paypal.png" />
+    <Content Include="Content\img\AdminImage\credit\paypal2.png" />
+    <Content Include="Content\img\AdminImage\credit\visa.png" />
+    <Content Include="Content\img\AdminImage\default-150x150.png" />
+    <Content Include="Content\img\AdminImage\icons.png" />
+    <Content Include="Content\img\AdminImage\photo1.png" />
+    <Content Include="Content\img\AdminImage\photo2.png" />
+    <Content Include="Content\img\AdminImage\photo3.jpg" />
+    <Content Include="Content\img\AdminImage\photo4.jpg" />
+    <Content Include="Content\img\AdminImage\prod-1.jpg" />
+    <Content Include="Content\img\AdminImage\prod-2.jpg" />
+    <Content Include="Content\img\AdminImage\prod-3.jpg" />
+    <Content Include="Content\img\AdminImage\prod-4.jpg" />
+    <Content Include="Content\img\AdminImage\prod-5.jpg" />
+    <Content Include="Content\img\AdminImage\user1-128x128.jpg" />
+    <Content Include="Content\img\AdminImage\user2-160x160.jpg" />
+    <Content Include="Content\img\AdminImage\user3-128x128.jpg" />
+    <Content Include="Content\img\AdminImage\user4-128x128.jpg" />
+    <Content Include="Content\img\AdminImage\user5-128x128.jpg" />
+    <Content Include="Content\img\AdminImage\user6-128x128.jpg" />
+    <Content Include="Content\img\AdminImage\user7-128x128.jpg" />
+    <Content Include="Content\img\AdminImage\user8-128x128.jpg" />
+    <Content Include="Content\img\bg\counter-bg-1.jpg" />
+    <Content Include="Content\img\bg\cta-bg-2.jpg" />
+    <Content Include="Content\img\bg\footer-bg-1.jpg" />
+    <Content Include="Content\img\bg\newsletter.png" />
+    <Content Include="Content\img\bg\page-title.jpg" />
+    <Content Include="Content\img\bg\pricing.jpg" />
+    <Content Include="Content\img\bg\service-bg-1.jpg" />
+    <Content Include="Content\img\bg\skill-bg-1.png" />
+    <Content Include="Content\img\bg\team-bg-1.jpg" />
+    <Content Include="Content\img\bg\video-bg-1.jpg" />
+    <Content Include="Content\img\blog\1.jpg" />
+    <Content Include="Content\img\blog\2.jpg" />
+    <Content Include="Content\img\blog\3.jpg" />
+    <Content Include="Content\img\blog\author.jpg" />
+    <Content Include="Content\img\blog\banner.jpg" />
+    <Content Include="Content\img\blog\bl-1.jpg" />
+    <Content Include="Content\img\blog\bl-2.jpg" />
+    <Content Include="Content\img\blog\bl-3.jpg" />
+    <Content Include="Content\img\blog\bs-1.jpg" />
+    <Content Include="Content\img\blog\bs-2.jpg" />
+    <Content Include="Content\img\blog\bs-3.jpg" />
+    <Content Include="Content\img\blog\com.jpg" />
+    <Content Include="Content\img\blog\single.jpg" />
+    <Content Include="Content\img\blog\user.jpg" />
+    <Content Include="Content\img\case\1.jpg" />
+    <Content Include="Content\img\case\2.jpg" />
+    <Content Include="Content\img\case\3.jpg" />
+    <Content Include="Content\img\case\4.jpg" />
+    <Content Include="Content\img\case\5.jpg" />
+    <Content Include="Content\img\case\6.jpg" />
+    <Content Include="Content\img\case\banner.jpg" />
+    <Content Include="Content\img\case\cs-1.jpg" />
+    <Content Include="Content\img\case\cs-2.jpg" />
+    <Content Include="Content\img\case\single.jpg" />
+    <Content Include="Content\img\case\user.jpg" />
+    <Content Include="Content\img\contact\1.jpg" />
+    <Content Include="Content\img\cta\1.jpg" />
+    <Content Include="Content\img\features\1.jpg" />
+    <Content Include="Content\img\features\2.jpg" />
+    <Content Include="Content\img\features\3.jpg" />
+    <Content Include="Content\img\gallery\1.jpg" />
+    <Content Include="Content\img\gallery\2.jpg" />
+    <Content Include="Content\img\gallery\3.jpg" />
+    <Content Include="Content\img\gallery\4.jpg" />
+    <Content Include="Content\img\gallery\5.jpg" />
+    <Content Include="Content\img\gallery\6.jpg" />
+    <Content Include="Content\img\gallery\7.jpg" />
+    <Content Include="Content\img\gallery\8.jpg" />
+    <Content Include="Content\img\gallery\9.jpg" />
+    <Content Include="Content\img\logo\favicon.png" />
+    <Content Include="Content\img\logo\logo-light.png" />
+    <Content Include="Content\img\logo\logo.png" />
+    <Content Include="Content\img\object\object-1.png" />
+    <Content Include="Content\img\object\object-2.png" />
+    <Content Include="Content\img\service\1.jpg" />
+    <Content Include="Content\img\service\2.jpg" />
+    <Content Include="Content\img\service\3.jpg" />
+    <Content Include="Content\img\service\4.jpg" />
+    <Content Include="Content\img\service\5.jpg" />
+    <Content Include="Content\img\service\6.jpg" />
+    <Content Include="Content\img\service\banner.jpg" />
+    <Content Include="Content\img\service\map-1.html" />
+    <Content Include="Content\img\service\s-1.jpg" />
+    <Content Include="Content\img\service\s-2.jpg" />
+    <Content Include="Content\img\service\single.jpg" />
+    <Content Include="Content\img\slider\1.png" />
+    <Content Include="Content\img\slider\slider-1.jpg" />
+    <Content Include="Content\img\slider\slider-2.jpg" />
+    <Content Include="Content\img\slider\slider-3.jpg" />
+    <Content Include="Content\img\sponsors\1.png" />
+    <Content Include="Content\img\sponsors\2.png" />
+    <Content Include="Content\img\sponsors\3.png" />
+    <Content Include="Content\img\sponsors\4.png" />
+    <Content Include="Content\img\sponsors\5.png" />
+    <Content Include="Content\img\sponsors\6.png" />
+    <Content Include="Content\img\team\1.jpg" />
+    <Content Include="Content\img\team\2.jpg" />
+    <Content Include="Content\img\team\3.jpg" />
+    <Content Include="Content\img\team\4.jpg" />
+    <Content Include="Content\img\team\single.jpg" />
+    <Content Include="Content\img\testimonial\1.jpg" />
+    <Content Include="Content\img\testimonial\2.jpg" />
+    <Content Include="Content\img\testimonial\3.jpg" />
+    <Content Include="Content\img\testimonial\4.jpg" />
+    <Content Include="Content\js\adminlte.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\contact-form.js" />
+    <Content Include="Content\js\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\js\isotope.pkgd.min.js" />
+    <Content Include="Content\js\jquery-3.6.0.min.js" />
+    <Content Include="Content\js\jquery-ui.min.js" />
+    <Content Include="Content\js\jquery.counterup.min.js" />
+    <Content Include="Content\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\js\jquery.nice-select.min.js" />
+    <Content Include="Content\js\jquery.overlayScrollbars.min.js" />
+    <Content Include="Content\js\jquery.waypoints.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\slick.min.js" />
+    <Content Include="Content\js\wow.min.js" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-ui-1.13.2.js" />
+    <Content Include="Scripts\jquery-ui-1.13.2.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\flaticon\flaticonef10ef10.eot" />
+    <Content Include="Content\fonts\flaticon\flaticonef10ef10.ttf" />
+    <Content Include="Content\fonts\flaticon\flaticonef10ef10.woff" />
+    <Content Include="Content\fonts\flaticon\flaticonef10ef10.woff2" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-brands-400d41dd41d.eot" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-light-300.eot" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-light-300.ttf" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-light-300.woff" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-light-300.woff2" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-light-300d41dd41d.eot" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-regular-400d41dd41d.eot" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\fonts\fontawesome\webfonts\fa-solid-900d41dd41d.eot" />
+    <Content Include="Content\css\adminlte.min.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Views\Home\FAQs.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\HomeNavbar.cshtml" />
+    <Content Include="Views\Admin\HomeSlider.cshtml" />
+    <Content Include="Views\Admin\CreateSlider.cshtml" />
+    <Content Include="Views\Admin\EditSlider.cshtml" />
+    <Content Include="Views\Admin\FaqsList.cshtml" />
+    <Content Include="Views\Admin\CreateFaqs.cshtml" />
+    <Content Include="Views\Admin\EditFaqs.cshtml" />
+    <Content Include="Views\Admin\LawyerServicesList.cshtml" />
+    <Content Include="Views\Admin\CreateLawyerService.cshtml" />
+    <Content Include="Views\Admin\EditLawyerService.cshtml" />
+    <Content Include="Views\Account\RegisterLawyer.cshtml" />
+    <Content Include="Views\Admin\LawyerVerificationList.cshtml" />
+    <Content Include="Views\Lawyer\Create.cshtml" />
+    <Content Include="Views\Shared\_LawyerLayout.cshtml" />
+    <Content Include="Views\Lawyer\Index.cshtml" />
+    <Content Include="Views\Admin\AdminProfile.cshtml" />
+    <Content Include="Views\Admin\PracticeAreaList.cshtml" />
+    <Content Include="Views\Admin\CreatePracticeArea.cshtml" />
+    <Content Include="Views\Admin\EditPracticeArea.cshtml" />
+    <Content Include="Views\Admin\LawyerLocationList.cshtml" />
+    <Content Include="Views\Admin\CreateLawyerLocation.cshtml" />
+    <Content Include="Views\Admin\EditLawyerLocation.cshtml" />
+    <Content Include="Views\Admin\LawyersList.cshtml" />
+    <Content Include="Views\Admin\UsersList.cshtml" />
+    <Content Include="Views\Admin\ContactUs.cshtml" />
+    <Content Include="Views\Home\AttorneyDetail.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
+    <Content Include="Views\Home\AttorneyList.cshtml" />
+    <Content Include="Views\Lawyer\Edit.cshtml" />
+    <Content Include="Views\Lawyer\AppointmentList.cshtml" />
+    <Content Include="Views\Home\UserAppointment.cshtml" />
+    <Content Include="Views\Manage\ChangeLawyerPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202307131000123_AddIdentityTablesAndHomeNavbarTable.resx">
+      <DependentUpon>202307131000123_AddIdentityTablesAndHomeNavbarTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307132115294_AddHomeSliderTable.resx">
+      <DependentUpon>202307132115294_AddHomeSliderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307161041046_AddFaqsTable.resx">
+      <DependentUpon>202307161041046_AddFaqsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307181508046_AddLawyerServiceContentTable.resx">
+      <DependentUpon>202307181508046_AddLawyerServiceContentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307191753564_AddLocationColumnInHomeNavbarTable.resx">
+      <DependentUpon>202307191753564_AddLocationColumnInHomeNavbarTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307262206517_AddStatusColumnInAspNetUsersTable.resx">
+      <DependentUpon>202307262206517_AddStatusColumnInAspNetUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307281945335_AddIsValidColumnInAspNetUsersTable.resx">
+      <DependentUpon>202307281945335_AddIsValidColumnInAspNetUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307282010073_AddLawyerLocationAndLawyerPracticeAreasTable.resx">
+      <DependentUpon>202307282010073_AddLawyerLocationAndLawyerPracticeAreasTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307282017055_AddLawyerDetailTable.resx">
+      <DependentUpon>202307282017055_AddLawyerDetailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307292031083_ChangeTypeOfExperienceInYears.resx">
+      <DependentUpon>202307292031083_ChangeTypeOfExperienceInYears.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307292038342_RemoveExperienceInYearsColumnInLawyerDetailTable.resx">
+      <DependentUpon>202307292038342_RemoveExperienceInYearsColumnInLawyerDetailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307312049009_AddContactUsTable.resx">
+      <DependentUpon>202307312049009_AddContactUsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308011542039_AddTimeSlotTable.resx">
+      <DependentUpon>202308011542039_AddTimeSlotTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308011645273_AddAppointmentTable.resx">
+      <DependentUpon>202308011645273_AddAppointmentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308011656334_AddUserIdColumnInAppointmentTable.resx">
+      <DependentUpon>202308011656334_AddUserIdColumnInAppointmentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308011725488_AddStatusColumnInAppointmentTable.resx">
+      <DependentUpon>202308011725488_AddStatusColumnInAppointmentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308052145254_ChangeDateTimeInTimeSlotTable.resx">
+      <DependentUpon>202308052145254_ChangeDateTimeInTimeSlotTable.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63835</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44346/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

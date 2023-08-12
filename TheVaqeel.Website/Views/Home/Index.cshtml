@@ -1,0 +1,150 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+    var i = 0;
+    var className = "hero-content-left";
+    var secClassName = "justify-content-start";
+    var isValid = ViewBag.IsValid;
+    var email = User.Identity.Name;
+
+}
+@if (User.IsInRole("Lawyer"))
+{
+    if (isValid == false)
+    {
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Hello @User.Identity.Name!</h1>
+                    </div>
+                    <div class="modal-body">
+                        Kindly provide your account details to facilitate the booking process by the user.
+                    </div>
+                    <div class="modal-footer">
+                        @Html.ActionLink("Understood", "Create", "Lawyer", null, new { @class = "main-btn" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<section class="hero-area">
+    <div class="hero-wrapper-one">
+        <div class="hero-slider-one">
+            @foreach (var slider in Model.HomeSlider)
+            {
+                <div class="single-slider bg-with-overlay bg_cover"
+                     style="background-image: url(/Content/img/slider/@slider.Image);">
+                    <div class="container">
+                        @if (i == 1)
+                        {
+                            className = "hero-content-center";
+                            secClassName = "justify-content-center";
+                        }
+                        else if (i == 2)
+                        {
+                            className = "hero-content-right";
+                            secClassName = "justify-content-end";
+                        }
+                        <div class="row @secClassName">
+                            <div class="col-lg-8">
+                                <div class="hero-content @className">
+                                    <span class="span" data-animation="fadeInDown" data-delay=".4s">
+                                        @slider.Title
+                                    </span>
+                                    <h1 data-animation="fadeInDown" data-delay=".5s">@slider.Title</h1>
+                                    <p data-animation="fadeInDown" data-delay=".55s">
+                                        @slider.Description
+                                    </p>
+                                    <ul class="button" data-animation="fadeInDown" data-delay=".60s">
+                                        <li><a href="contact.html" class="main-btn arro-btn">appointment</a></li>
+                                        <li>
+                                            <a href="about-us.html" class="main-btn arro-btn filled-btn">Read more</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                i = i + 1;
+            }
+        </div>
+    </div>
+</section>
+
+
+<section class="features-area features-area-one pt-130">
+    <div class="container">
+        <div class="row features-wrapper-one">
+            @foreach (var service in Model.LawyerServiceContent)
+            {
+                <div class="col-lg-3">
+                    <div class="features-item features-item-one text-center">
+                        <div class="item-bg bg_cover" style="background-image: url(/Content/img/features/@service.Image);"></div>
+                        <div class="icon">
+                            <i class="flaticon-libra"></i>
+                        </div>
+                        <div class="content">
+                            <h4>@service.Title</h4>
+                            <p>@service.Description</p>
+                            <a href="practice-details.html" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="team-area pt-120 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="section-title section-title-left mb-65 wow fadeInLeft" data-wow-delay=".2s">
+                    <span class="sub-title">Qualified Attorneys</span>
+                    <h2>Meet Our Attorneys</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var lawyer in Model.LawyerDetails)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="team-item team-item-one mb-40 wow fadeInUp" data-wow-delay=".25s">
+                        <div class="team-img">
+                            <img src="~/Content/img/team/@lawyer.Image" alt="Team">
+                            <div class="team-overlay">
+                                <div class="team-social">
+                                    <ul class="social-link">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="title"><a href="@Url.Action("AttorneyDetail","Home",new { id = lawyer.LawyerId })">@lawyer.FullName</a></h3>
+                            <span class="position">@lawyer.LawyerPracticeAreas.Name</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#staticBackdrop").modal('show');
+            $("#exampleModal").modal('show');
+        });
+    </script>
+}
+

@@ -1,0 +1,62 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "RegisterUser";
+}
+<section class="hero-area">
+    <div class="breadcrumbs-area bg_cover bg-with-overlay" style="background-image: url(assets/img/bg/page-title.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h1 class="title">Register</h1>
+                        <ul class="breadcrumbs-link">
+                            <li><a href="index.html">Home</a></li>
+                            <li class>Register</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="login-area pt-100 pb-100">
+    <div class="container">
+        <div class="col-md-5 mx-auto">
+            <div class="login-wrapper">
+                <div class="login-header">
+                    <h4>Register</h4>
+                    <p>create your lawrex account</p>
+                </div>
+                <div class="login-form">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.RegisterViewModel.Email)
+                        @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control",@placeholder="Enter your email" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.RegisterViewModel.Password)
+                        @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control", @placeholder = "Enter your password" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword)
+                        @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control", @placeholder = "Enter your password again" })
+                    </div>
+                        <button type="submit" class="login-btn">Register</button>
+                    }
+                    <p class="login-bottom">Want to Register as Lawyer Account? <a href="@Url.Action("RegisterLawyer","Account")">Register.</a></p>
+                    <p class="login-bottom">Already have an account? <a href="@Url.Action("Login","Account")">Login.</a></p>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

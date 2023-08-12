@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .bg-warning, .bg-warning > a{
+        color:white!important;
+    }
+</style>
+
+<section class="content pt-3">
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, @User.Identity.Name!</h1>
+            <p class="lead">Welecome to The Vaqeel.Below are a few demographics of The Vaqeel.</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.TotalUsers</h3>
+
+                        <p>Total Users</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="@Url.Action("UsersList","Admin")" class="small-box-footer">More info <i class="bi bi-arrow-right-circle "></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.TotalLawyers</h3>
+
+                        <p>Total Lawyers</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="@Url.Action("LawyersList","Admin")" class="small-box-footer">More info <i class="bi bi-arrow-right-circle "></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3 class="text-white">@ViewBag.TotalAdmins</h3>
+
+                        <p class="text-white">Total Admins</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="@Url.Action("Index","Admin")" class="text-white small-box-footer">More info <i class="bi bi-arrow-right-circle text-white"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.TotalContact</h3>
+
+                        <p>Contact Queries</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="@Url.Action("ContactUs","Admin")" class="small-box-footer">More info <i class="bi bi-arrow-right-circle "></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+    </div>
+</section>

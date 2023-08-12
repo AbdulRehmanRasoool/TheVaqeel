@@ -1,0 +1,117 @@
+﻿@model IEnumerable<TheVaqeel.Website.Models.ApplicationUser>
+@{
+    ViewBag.Title = "LawyerVerification";
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+
+}
+
+
+<section class="pt-3" id="verificationTable">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var lawyer in Model)
+                                {
+                                    if (lawyer.Email == "admin@email.com")
+                                    {
+                                        continue;
+                                    }
+                                    <tr>
+
+                                        <td>@lawyer.Email</td>
+                                        @if (lawyer.Status == 0)
+                                        {
+                                            <td><span class="badge bg-danger text-white">Not Verified</span></td>
+                                        }
+                                        else if (lawyer.Status == 1)
+                                        {
+                                            <td><span class="badge bg-info text-white">Verified</span></td>
+                                        }
+                                        <td>
+                                            @if (lawyer.Status == 0)
+                                            {
+                                                <button type="button" class="btn btn-success ActivateBtn" data-id="@lawyer.Id">Activate</button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-warning DeactivateBtn text-white" data-id="@lawyer.Id">De Activate</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+    </div>
+</section>
+
+    <script>
+    $(document).ready(function () {
+        let table = new DataTable('#myTable');
+
+        $(".ActivateBtn").click(function () {
+            swal("", "Are you sure you want to activate this lawyer?", "warning", {
+                dangerMode: false,
+                buttons: true,
+            });
+            var Id = $(this).attr("data-id")
+            $(".swal-button--confirm").click(function () {
+                $.ajax({
+                    url: "@Url.Action("Verification", "Admin")",
+                    method: "Get",
+                    data: {
+                        id: Id
+                    }
+                }).done(function (response) {
+                    $("#verificationTable").html(response);
+                });
+            });
+
+        });
+
+        $(".DeactivateBtn").click(function () {
+            swal("", "Are you sure you want to De-activate this lawyer?", "warning", {
+                dangerMode: false,
+                buttons: true,
+            });
+             Id = $(this).attr("data-id")
+            $(".swal-button--confirm").click(function () {
+                $.ajax({
+                    url: "@Url.Action("Verification", "Admin")",
+                    method: "Get",
+                    data: {
+                        id: Id
+                    }
+                }).done(function (response) {
+                    $("#verificationTable").html(response);
+                });
+            });
+        });
+
+    });
+    </script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>

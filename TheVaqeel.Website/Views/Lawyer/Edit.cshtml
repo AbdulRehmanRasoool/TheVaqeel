@@ -1,0 +1,116 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LawyerLayout.cshtml";
+}
+<section class="pt-3">
+    <div class="container">
+        @using (Html.BeginForm("Edit", "Lawyer", FormMethod.Post, new { enctype = "multipart/form-data", id = "CreateSliderForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Personal Information</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.FullName)
+                                @Html.TextBoxFor(l => l.LawyerDetail.FullName, new { @class = "form-control", @placeholder = "Enter Full Name" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.State)
+                                @Html.TextBoxFor(l => l.LawyerDetail.State, new { @class = "form-control", @placeholder = "Enter State" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.MobileNumber)
+                                @Html.TextBoxFor(l => l.LawyerDetail.MobileNumber, new { @class = "form-control", @placeholder = "Enter Phone Number" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.City)
+                                @Html.TextBoxFor(l => l.LawyerDetail.City, new { @class = "form-control", @placeholder = "Enter City" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.Description)
+                                @Html.TextAreaFor(l => l.LawyerDetail.Description, new { @class = "form-control", @placeholder = "Enter Description", @rows = 4, @cols = 26 })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Professional Information</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.LawyerLocationId)
+                                @Html.DropDownListFor(l => l.LawyerDetail.LawyerLocationId, new SelectList(Model.LawyerLocation, "Id", "Name"), "Select Location", new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.LawyerPracticeAreasId)
+                                @Html.DropDownListFor(l => l.LawyerDetail.LawyerPracticeAreasId, new SelectList(Model.LawyerPracticeAreas, "Id", "Name"), "Select Practice Areas", new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.Image)
+                                @Html.TextBoxFor(l => l.LawyerDetail.Image, new { type = "file", @class = "form-control", Name = "file" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(l => l.LawyerDetail.OfficeAddress)
+                                @Html.TextBoxFor(l => l.LawyerDetail.OfficeAddress, new { @class = "form-control", @placeholder = "Enter Office Address" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.HiddenFor(l => l.LawyerDetail.LawyerId)
+                                <img src="~/Content/img/team/@Model.LawyerDetail.Image" alt="Alternate Text" class="img-fluid" />
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <input type="button" value="Submit" class="btn btn-primary" id="SaveLawyerDetail" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#SaveLawyerDetail").click(function () {
+                var formData = new FormData();
+                formData.append('file', $("#LawyerDetail_Image").get(0).files[0]);
+                formData.append('LawyerDetail.FullName', $("#LawyerDetail_FullName").val());
+                formData.append('LawyerDetail.OfficeAddress', $("#LawyerDetail_OfficeAddress").val());
+                formData.append('LawyerDetail.State', $("#LawyerDetail_State").val());
+                formData.append('LawyerDetail.LawyerLocationId', $("#LawyerDetail_LawyerLocationId").val());
+                formData.append('LawyerDetail.MobileNumber', $("#LawyerDetail_MobileNumber").val());
+                formData.append('LawyerDetail.LawyerPracticeAreasId', $("#LawyerDetail_LawyerPracticeAreasId").val());
+                formData.append('LawyerDetail.City', $("#LawyerDetail_City").val());
+                formData.append('LawyerDetail.Description', $("#LawyerDetail_Description").val());
+                formData.append('LawyerDetail.LawyerId', $("#LawyerDetail_LawyerId").val());
+                $.ajax({
+                    url: "@Url.Action("Edit","Lawyer")",
+                    method: "Post",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                }).done(function (response) {
+                    debugger;
+                    swal("Thank You", "Data Updated Successfully", "success");
+                    $(".swal-button--confirm").click(function () {
+                        window.location.href = "@Url.Action("Index","Lawyer")";
+                    });
+                });
+            });
+        });
+    </script>
+}

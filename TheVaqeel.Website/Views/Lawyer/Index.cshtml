@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LawyerLayout.cshtml";
+
+}
+<style>
+    .bg-warning, .bg-warning > a {
+        color: white !important;
+    }
+</style>
+
+<section class="content pt-3">
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, @User.Identity.Name!</h1>
+            <p class="lead">Welcome to The Vaqeel Website Where user connects with the lawyers</p>
+        </div>
+    </div>
+</section>

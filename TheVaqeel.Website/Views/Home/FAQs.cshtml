@@ -1,0 +1,60 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "FAQs";
+    var idName = "collapse";
+    var i = 0;
+}
+
+<section class="hero-area">
+    <div class="breadcrumbs-area bg_cover bg-with-overlay"
+         style="background-image: url(/Content/img/bg/page-title.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h1 class="title">Faq</h1>
+                        <ul class="breadcrumbs-link">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="">Faq</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="faq-area pt-130 pb-110">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="faq-accordian-one" id="accordionOne">
+                    @foreach (var faq in Model.Faq)
+                    {
+                        if(i >= 1)
+                        {
+                            idName = "collapse" + i;
+                        }
+                        <div class="card mb-20">
+                            <div class="card-header">
+                                <a href="#" data-bs-toggle="collapse" data-bs-target="#@idName" aria-expanded="true">
+                                    @faq.Question
+                                </a>    
+                            </div>
+                            <div id="@idName" class="collapse show" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p>
+                                        @faq.Answer
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        i = i + 1;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

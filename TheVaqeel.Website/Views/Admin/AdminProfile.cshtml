@@ -1,0 +1,59 @@
+﻿@model TheVaqeel.Website.Models.ApplicationUser
+@{
+    ViewBag.Title = "AdminProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="container pt-3">
+    <div class="card card-warning">
+        <div class="card-header">
+            <h3 class="card-title text-white">Profile Settings</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form method="post" id="AdminProfileForm">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @ViewBag.Error
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" value="@Model.Email" name="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Username</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" value="@Model.UserName" name="Username" required>
+                            <input type="hidden" value="@Model.Id" name="Id" id="HiddenId" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="button" id="SubmitBtn" class="btn btn-warning text-white">Update Profile</button>
+        </div>
+
+    </div>
+</section>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#SubmitBtn").click(function () {
+                $.ajax({
+                    url: "@Url.Action("AdminProfile","Admin")",
+                    method: "Post",
+                    data: $("#AdminProfileForm").serialize()
+                }).done(function (response) {
+                    swal("Success", "Data Updated Successfully", "success");
+                });
+            });
+        });
+    </script>
+    }
+

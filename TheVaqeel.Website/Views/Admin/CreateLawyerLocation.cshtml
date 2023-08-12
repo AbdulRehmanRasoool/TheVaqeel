@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("CreateLawyerLocation", "Admin", FormMethod.Post, new { id = "CreateFaqsForm" }))
+{
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="InputTitle">Location</label>
+                    <input type="text" class="form-control" id="InputTitle" name="Name" required>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+<script>
+        $(document).ready(function () {
+            $("#SaveSliderBtn").click(function () {
+            $.ajax({
+                url: "@Url.Action("CreateLawyerLocation", "Admin")",
+                method: "post",
+                data: $("#CreateFaqsForm").serialize()
+            }).done(function (response) {
+                $("#exampleModal").modal("toggle");
+                $("#FaqsContent").html(response);
+                swal("Good Job!", "Data Added Successfully", "success");
+            });
+         });
+        });
+</script>

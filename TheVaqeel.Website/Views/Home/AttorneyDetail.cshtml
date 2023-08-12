@@ -1,0 +1,60 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "AttorneyDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="hero-area">
+    <div class="breadcrumbs-area bg_cover bg-with-overlay" style="background-image: url(assets/img/bg/page-title.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h1 class="title">Attorney Details</h1>
+                        <ul class="breadcrumbs-link">
+                            <li><a href="index.html">Home</a></li>
+                            <li>Attorney Details</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="team-details-section pt-130 pb-80">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <div class="team-img mb-50 wow fadeInLeft" data-wow-delay=".8s">
+                    <img src="~/Content/img/team/@Model.LawyerDetail.Image" class="img-fluid" alt="Team">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="team-content mb-50 wow fadeInRight" data-wow-delay="1s">
+                    <h3 class="title">@Model.LawyerDetail.FullName</h3>
+                    <span class="position">@Model.LawyerDetail.LawyerPracticeAreas.Name</span>
+                    <p>
+                        @Model.LawyerDetail.Description
+                    </p>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <a href="@Url.Action("Create","Appointment", new {id = Model.LawyerDetail.LawyerId})" class="main-btn">Appointment now</a>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

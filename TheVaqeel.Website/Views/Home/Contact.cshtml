@@ -1,0 +1,155 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "Contact";
+}
+
+<section class="hero-area">
+    <div class="breadcrumbs-area bg_cover bg-with-overlay"
+         style="background-image: url(/Content/img/bg/page-title.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h1 class="title">Contact Us</h1>
+                        <ul class="breadcrumbs-link">
+                            <li><a href="index.html">Home</a></li>
+                            <li>Contact Us</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact-area pt-120 pb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="map-area">
+                    <div class="map-box">
+                        <iframe src="@Model.HomeNavbar.Location"></iframe>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="contact-wrapper-three mb-50">
+                    <div class="section-title mb-30">
+                        <h2>Leave A Message</h2>
+                        <p>We Are Ready To Help You</p>
+                    </div>
+                    <div class="contact-form">
+                        @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @id = "contact-form" }))
+                        {
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form_group">
+                                        <input type="text" class="form_control" placeholder="Full Name" name="name"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form_group">
+                                        <input type="email" class="form_control" placeholder="Email Address"
+                                               name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form_group">
+                                        <input type="text" class="form_control" placeholder="Your Subject"
+                                               name="subject" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form_group">
+                                        <textarea class="form_control" placeholder="Write Message" name="message"
+                                                  required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form_group">
+                                        <button class="main-btn" type="button" id="SendContact">Send message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-md-12 mt-3">
+                            <div class="form-messege text-success"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="office-info">
+                <div class="row">
+                    <div class="col col-xl-4 col-lg-6 col-md-6 col-12">
+                        <div class="office-info-item">
+                            <div class="office-info-icon">
+                                <div class="icon">
+                                    <i class="fal fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="office-info-text">
+                                <h2>Address</h2>
+                                <p>@Model.HomeNavbar.Address</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-xl-4 col-lg-6 col-md-6 col-12">
+                        <div class="office-info-item">
+                            <div class="office-info-icon">
+                                <div class="icon">
+                                    <i class="fal fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="office-info-text">
+                                <h2>Email Us</h2>
+                                <p>
+                                    @Model.HomeNavbar.Email
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-xl-4 col-lg-6 col-md-6 col-12">
+                        <div class="office-info-item">
+                            <div class="office-info-icon">
+                                <div class="icon">
+                                    <i class="fal fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="office-info-text">
+                                <h2>Call Now</h2>
+                                <p>+92 @Model.HomeNavbar.PhoneNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#SendContact").click(function () {
+                $.ajax({
+                    url: "@Url.Action("Contact","Home")",
+                    method: "Post",
+                    data: $("#contact-form").serialize()
+                }).done(function (response) {
+                    swal("Good Job", "Your response has been submitted!", "success");
+                    $("#contact-form").each(function () {
+                        this.reset();
+                    });
+                });
+            });
+        });
+    </script>
+    }

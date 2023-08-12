@@ -1,0 +1,156 @@
+﻿@model IEnumerable<TheVaqeel.Website.Models.Faqs>
+@{
+    ViewBag.Title = "FaqsList";
+if (Request.IsAjaxRequest())
+            {
+                Layout = null;
+            }
+else
+            {
+                Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            }
+    var i = 1;
+}
+
+    <div id="FaqsContent" class="pt-3">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-12 float-end">
+                                        <button class="btn float-right btn-primary" id="CreateFaqBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add a New FAQs</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="FAQs" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>S.N.O</th>
+                                            <th>Question</th>
+                                            <th>Answer</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var faq in Model)
+                                        {
+
+                                            <tr>
+                                                <td>@i</td>
+                                                <td>@faq.Question</td>
+                                                <td>@faq.Answer</td>
+                                                <td>
+                                                    <button class="btn btn-warning EditSliderBtn" data-id="@faq.Id" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"><i class="fas fa-pen text-white"></i></button>
+                                                    <button class="btn btn-danger DeleteFaqBtn" data-id="@faq.Id"><i class="fas fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            i = i + 1;
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+    $(document).ready(function () {
+        let table = new DataTable("#FAQs");
+
+        $("#CreateFaqBtn").click(function () {
+            debugger;
+            $.ajax({
+                url: "@Url.Action("CreateFaqs","Admin")",
+                method: "get"
+            }).done(function (response) {
+                $("#CreateFaqsArea").html(response);
+            });
+        });
+
+        $(".EditSliderBtn").click(function () {
+            $.ajax({
+                url: "@Url.Action("EditFaqs","Admin")",
+                method: "Get",
+                data: {
+                    id: $(this).attr("data-id")
+                }
+            }).done(function (response) {
+                $("#EditSliderArea").html(response);
+            });
+        });
+
+        $(".DeleteFaqBtn").click(function () {
+            swal("","Are you sure you want to delete this FAQs?","warning", {
+                dangerMode: true,
+                buttons: true,
+            });
+            Id = $(this).attr("data-id");
+            $(".swal-button--danger").click(function () {
+                $.ajax({
+                    url: "@Url.Action("DeleteFaqs","Admin")",
+                    method: "Post",
+                    data: {
+                        id: Id
+                    }
+                }).done(function (response) {
+                    $("#exampleModalDelete").modal("toggle");
+                    $("#FaqsContent").html(response);
+                    swal("Good Job!", "Data Deleted Successfully", "success");
+                });
+            });
+
+        });
+    });
+
+    </script>
+<div class="modal fade" id="exampleModal" tabindex="-4" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">Add a New Question</h4>
+            </div>
+            <div class="modal-body ">
+                <div id="CreateFaqsArea">
+
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="SaveSliderBtn" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h4 class="modal-title text-white">Edit FAQs</h4>
+            </div>
+            <div class="modal-body">
+                <div id="EditSliderArea"></div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning text-white" id="UpdateSliderBtn">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

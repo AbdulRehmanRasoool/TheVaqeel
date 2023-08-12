@@ -1,0 +1,139 @@
+﻿@model IEnumerable<TheVaqeel.Website.Models.HomeSlider>
+@{
+    ViewBag.Title = "HomeSlider";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div id="SliderContent" class="pt-3">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-12 float-end">
+                                    <button class="btn float-right btn-primary" id="CreateSliderBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Sliders</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var slider in Model)
+                                    {
+                                        <tr>
+                                            <td><img src="~/Content/img/slider/@slider.Image" alt="Image not Found" class="img-fluid" style="max-height:80px" /></td>
+                                            <td>@slider.Title</td>
+                                            <td>@slider.Description</td>
+                                            <td>
+                                                <button class="btn btn-warning EditSliderBtn" data-id="@slider.Id" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"><i class="fas fa-pen text-white"></i></button>
+                                                <button class="btn btn-danger DeleteSliderBtn" data-id="@slider.Id"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="modal fade" id="exampleModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">Add a new Slider</h4>
+            </div>
+            <div class="modal-body">
+                <div id="CreateSliderArea"></div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="SaveSliderBtn">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="exampleModalEdit">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h4 class="modal-title text-white">Edit a Slider</h4>
+            </div>
+            <div class="modal-body">
+                <div id="EditSliderArea"></div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning text-white" id="UpdateSliderBtn">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script>
+    $(document).ready(function () {
+        let table = new DataTable("#example2");
+
+        $("#CreateSliderBtn").click(function () {
+            $.ajax({
+                url: "@Url.Action("CreateSlider","Admin")",
+                method: "Get"
+            }).done(function (response) {
+                $("#CreateSliderArea").html(response);
+            });
+        });
+
+        $(".EditSliderBtn").click(function () {
+            $.ajax({
+                url: "@Url.Action("EditSlider","Admin")",
+                method: "Get",
+                data: {
+                    id: $(this).attr("data-id")
+                }
+            }).done(function (response) {
+                $("#EditSliderArea").html(response);
+            });
+        });
+
+        $(".DeleteSliderBtn").click(function () {
+            result = $(this).attr("data-id");
+            swal("Are you sure?", "warning", "info", {
+                dangerMode: true,
+                buttons: true,
+            });
+            $(".swal-button--danger").click(function () {
+                $.ajax({
+                    url: "@Url.Action("DeleteSlider", "Admin")",
+                    method: "Post",
+                    data: {
+                        id : result
+                    }
+                }).done(function (response) {
+                    $(".wrapper").html(response)
+                });
+            });
+        });
+    });
+
+</script>

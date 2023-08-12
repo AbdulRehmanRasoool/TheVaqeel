@@ -1,0 +1,123 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "AppointmentList";
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LawyerLayout.cshtml";
+    }
+
+    var i = 1;
+}
+
+<div id="FaqsContent" class="pt-3">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="FAQs" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var faq in Model.Appointments)
+                                    {
+
+                                        <tr>
+                                            <td>@faq.Name</td>
+                                            <td>@faq.Email</td>
+                                            <td>@faq.Phone</td>
+                                            <td>@faq.Date.ToShortDateString()</td>
+                                            <td>@faq.TimeSlot.StartTime - @faq.TimeSlot.EndTime</td>
+                                            <td>
+                                                @if (faq.Status == 0)
+                                                {
+                                                    <span class="badge bg-info text-white">Pending</span>
+                                                }
+                                                else if (faq.Status == 1)
+                                                {
+                                                    <span class="badge bg-primary text-white">Approved</span>
+                                                }
+                                                else if (faq.Status == 2)
+                                                {
+                                                    <span class="badge bg-success text-white">Completed</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-danger text-white">Cancelled</span>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @if (faq.Status == 0 )
+                                                {
+                                                    <button class="btn btn-success AppointBtn" data-id="@faq.Id"><i class="fas fa-check text-white "></i></button>
+                                                    <button class="btn btn-danger RejectAppointBtn" data-id="@faq.Id"><i class="fas fa-trash-alt  text-white "></i></button>
+
+                                                }
+                                                else if(faq.Status == 1)
+                                                {
+                                                    <button class="btn btn-primary AppointBtn" data-id="@faq.Id"><i class="fas fa-thumbs-up text-white "></i></button> 
+                                                }
+                                            </td>
+                                        </tr>
+                                        i = i + 1;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            let table = new DataTable("#FAQs");
+
+            $(".AppointBtn").click(function () {
+                $.ajax({
+                    url: "@Url.Action("ApproveAppointment","Lawyer")",
+                    method: "Get",
+                    data: {
+                        id: $(this).attr("data-id")
+                    }
+                }).done(function (response) {
+                    swal("Good Job ", "Appointment Registered Successfully", "success");
+                });
+            });
+                
+            $(".RejectAppointBtn").click(function () {
+                $.ajax({
+                    url: "@Url.Action("RejectAppointment", "Lawyer")",
+                    method: "Get",
+                    data: {
+                        id: $(this).attr("data-id")
+                    }
+                }).done(function (response) {
+                    swal("Good Job ", "Appointment Cancelled", "success");
+                }); 
+            });
+        });
+    </script>
+}

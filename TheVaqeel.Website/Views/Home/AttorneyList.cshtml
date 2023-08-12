@@ -1,0 +1,57 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "AttorneyList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="hero-area">
+    <div class="breadcrumbs-area bg_cover bg-with-overlay"
+         style="background-image: url(assets/img/bg/page-title.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h1 class="title">Our Attorney</h1>
+                        <ul class="breadcrumbs-link">
+                            <li><a href="index.html">Home</a></li>
+                            <li class>Our Attorney</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="team-area pt-120 pb-90">
+    <div class="container">
+        <div class="row">
+            @foreach (var lawyer in Model.LawyerDetails)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="team-item team-item-one mb-40 wow fadeInUp" data-wow-delay=".25s">
+                        <div class="team-img">
+                            <img src="~/Content/img/team/@lawyer.Image" alt="Team">
+                            <div class="team-overlay">
+                                <div class="team-social">
+                                    <ul class="social-link">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="title"><a href="@Url.Action("AttorneyDetail","Home",new {id = @lawyer.LawyerId})">@lawyer.FullName</a></h3>
+                            <span class="position">@lawyer.LawyerPracticeAreas.Name</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

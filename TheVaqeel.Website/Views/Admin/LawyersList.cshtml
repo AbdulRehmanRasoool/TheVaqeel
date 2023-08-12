@@ -1,0 +1,104 @@
+﻿@model IEnumerable<TheVaqeel.Website.Models.LawyerDetail>
+@{
+    ViewBag.Title = "LawyersList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="pt-3" id="verificationTable">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover " id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Office Address</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Practice Area</th>
+                                        <th>Location</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var lawyer in Model)
+                                    {
+                                        <tr>
+
+                                            <td><img src="~/Content/img/team/@lawyer.Image" class="img-fluid" style="border-radius:50%; max-height:110px" /></td>
+                                            <td>@lawyer.FullName</td>
+                                            <td>@lawyer.MobileNumber</td>
+                                            <td>@lawyer.OfficeAddress</td>
+                                            <td>@lawyer.City</td>
+                                            <td>@lawyer.State</td>
+                                            <td>@lawyer.LawyerPracticeAreas.Name</td>
+                                            <td>@lawyer.LawyerLocation.Name</td>
+                                            <td>@lawyer.Description</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(document).ready(function () {
+        let table = new DataTable('#myTable');
+
+        $(".ActivateBtn").click(function () {
+            swal("", "Are you sure you want to activate this lawyer?", "warning", {
+                dangerMode: false,
+                buttons: true,
+            });
+            var Id = $(this).attr("data-id")
+            $(".swal-button--confirm").click(function () {
+                $.ajax({
+                    url: "@Url.Action("Verification", "Admin")",
+                    method: "Get",
+                    data: {
+                        id: Id
+                    }
+                }).done(function (response) {
+                    $("#verificationTable").html(response);
+                });
+            });
+
+        });
+
+        $(".DeactivateBtn").click(function () {
+            swal("", "Are you sure you want to De-activate this lawyer?", "warning", {
+                dangerMode: false,
+                buttons: true,
+            });
+             Id = $(this).attr("data-id")
+            $(".swal-button--confirm").click(function () {
+                $.ajax({
+                    url: "@Url.Action("Verification", "Admin")",
+                    method: "Get",
+                    data: {
+                        id: Id
+                    }
+                }).done(function (response) {
+                    $("#verificationTable").html(response);
+                });
+            });
+        });
+
+    });
+</script>
+<script src="https://smtpjs.com/v3/smtp.js">
+</script>

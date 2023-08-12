@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TheVaqeel.Website.Models.ApplicationUser>
+@{
+    ViewBag.Title = "UsersList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var i = 1;
+}
+
+
+<div id="FaqsContent" class="pt-3">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="FAQs" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.O</th>
+                                        <th>Email</th>
+                                        <th>UserName</th>
+                                        <th>Security Stamp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var faq in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@faq.Email</td>
+                                            <td>@faq.UserName</td>
+                                            <td>@faq.SecurityStamp</td>
+                                        </tr>
+                                        i = i + 1;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $(document).ready(function () {
+        let table = new DataTable("#FAQs");
+    });
+</script>

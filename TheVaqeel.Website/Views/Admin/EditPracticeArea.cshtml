@@ -1,0 +1,38 @@
+﻿@model TheVaqeel.Website.Models.LawyerPracticeAreas
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("EditPracticeArea", "Admin", FormMethod.Post, new { id = "EditFaqsForm" }))
+{
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="InputTitle">Practice Area</label>
+                    <input type="text" class="form-control" id="InputTitle" name="Name" value="@Model.Name">
+                </div>
+
+                <input type="hidden" id="HiddenId" value="@Model.Id" name="Id" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<script>
+        $(document).ready(function () {
+            $("#UpdateSliderBtn").click(function () {
+            $.ajax({
+                url: "@Url.Action("EditPracticeArea", "Admin")",
+                method: "Post",
+                data: $("#EditFaqsForm").serialize()
+            }).done(function (response) {
+                $("#exampleModalEdit").modal("toggle");
+                $("#FaqsContent").html(response);
+                swal("Good Job!", "Data Updated Successfully", "success");
+
+            });
+         });
+        });
+</script>

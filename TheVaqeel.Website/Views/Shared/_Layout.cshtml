@@ -1,0 +1,291 @@
+﻿@model TheVaqeel.Website.ViewModel.HomeViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader-shadow"></div>
+                <div class="loader-box"></div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="search-modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="search-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="far fa-times"></i>
+                    </button>
+                    <form>
+                        <div class="form_group">
+                            <input type="text" class="form_control" placeholder="Search here...">
+                            <button class="search_btn"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="offcanvas-panel">
+            <div class="offcanvas-panel-inner">
+                <div class="panel-logo">
+                    <a href="@Url.Action("Index","Home")"><img src="~/Content/img/logo/@Model.HomeNavbar.Logo" alt="logo"></a>
+                </div>
+                <div class="about-us">
+                    <h5 class="panel-widget-title">About Us</h5>
+                    <p>
+                        There are many variations of passages but the majority have suffered alteration in some form, by
+                        injected humour, or randomised words which don't look even slightly believable.
+                    </p>
+                </div>
+                <div class="contact-us">
+                    <h5 class="panel-widget-title">Contact Us</h5>
+                    <ul>
+                        <li>
+                            <i class="fal fa-map-marker-alt"></i>
+                            788 Marshville Road, Marlboro, New York, USA
+                        </li>
+                        <li>
+                            <i class="fal fa-envelope-open"></i>
+                            <a href="https://themes.themewild.com/cdn-cgi/l/email-protection#f79e999198b7928f969a879b92d994989a">
+                                <span>
+                                    <span class="__cf_email__"
+                                          data-cfemail="543d3a323b14312c35392438317a373b39">[email&#160;protected]</span>
+                                </span>
+                            </a>
+                            <a href="https://themes.themewild.com/cdn-cgi/l/email-protection#7a090f0a0a15080e3a1f021b170a161f54191517">
+                                <span>
+                                    <span class="__cf_email__"
+                                          data-cfemail="ddaea8adadb2afa99db8a5bcb0adb1b8f3beb2b0">[email&#160;protected]</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fal fa-phone"></i>
+                            <a href="tel:+123-1234-452">(+02) 123-1234-452</a>
+                            <a href="tel:+123-1234-453">(+02) 123-1234-453</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="social-area">
+                    <h5 class="panel-widget-title">Follow Us</h5>
+                    <div class="social-link">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <a href="#" class="panel-close"><i class="fal fa-times"></i></a>
+            </div>
+        </div>
+
+
+        <header class="header-area-one">
+
+            <div class="header-logo-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-3">
+                            <div class="site-branding">
+                                <a href="@Url.Action("Index","Home")" class="brand-logo"><img src="~/Content/img/logo/@Model.HomeNavbar.Logo" alt="logo"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-9">
+                            <div class="site-info">
+                                <ul class="info-list">
+                                    <li>
+                                        <div class="icon">
+                                            <a href="tel:+123-1234-452"><i class="fal fa-phone-plus"></i></a>
+                                        </div>
+                                        <div class="info">
+                                            <span class="title">Phone Number</span>
+                                            <h5>+92 @Model.HomeNavbar.PhoneNumber</h5>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <a href="https://themes.themewild.com/cdn-cgi/l/email-protection#cea7a0a8a18eabb6afa3bea2abe0ada1a3">
+                                                <i class="fal fa-envelope-open-text"></i>
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <span class="title">Email address</span>
+                                            <h5>@Model.HomeNavbar.Email</h5>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-navigation">
+                <div class="container">
+                    <div class="navigation-wrapper">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8 col-4">
+
+                                <div class="primary-menu">
+                                    <div class="nav-menu">
+                                        <div class="navbar-close"><i class="far fa-times"></i></div>
+                                        <nav class="main-menu">
+                                            <ul>
+                                                <li class="menu-item">
+                                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="@Url.Action("AttorneyList","Home")">Attorneys</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="@Url.Action("UserAppointment","Home")">Appointment</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="@Url.Action("Faqs","Home")">FAQs</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="@Url.Action("Contact","Home")">Contact Us</a>
+                                                </li>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    if (User.IsInRole("Administrator"))
+                                                    {
+                                                        <li class="menu-item">
+                                                            <a href="@Url.Action("Index","Admin")">Control Panel</a>
+                                                        </li>
+                                                    }
+                                                    else if (User.IsInRole("Lawyer"))
+                                                    {
+                                                        <li class="menu-item">
+                                                            <a href="@Url.Action("Index","Lawyer")">Dashboard</a>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div class="navbar-toggler">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-8">
+
+                                <div class="header-right-nav d-flex align-items-center">
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="search-btn" data-bs-toggle="modal"
+                                               data-bs-target="#search-modal"><i class="far fa-search"></i></a>
+                                        </li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            Html.RenderPartial("_LoginPartial");
+                                        }
+                                        else
+                                        {
+                                            <li class="menu-item has-children">
+                                            <a href="@Url.Action("Login","Account")" class="main-btn">Login</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        @RenderBody()
+
+        <footer class="footer-area">
+            <div class="footer-wrapper-one position-relative bg_cover pb-30"
+                 style="background-image: url(/Content/img/bg/footer-bg-1.jpg);">
+                <div class="container">
+                    <div class="footer-widget pt-80 pb-20">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="widget about-widget mb-55 wow fadeInUp" data-wow-delay=".2s">
+                                    <div class="footer-logo">
+                                        <a href="index.html"><img src="~/Content/img/logo/logo-light.png" alt="Logo"></a>
+                                    </div>
+                                    <p>
+                                        We are many variations of passages available but the majority have the suffered
+                                        alteration in some form of injected humour randomised.
+                                    </p>
+                                    <div class="share">
+                                        <h4>Follow Us</h4>
+                                        <ul class="social-link">
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="widget footer-nav-widget mb-55 wow fadeInUp" data-wow-delay=".3s">
+                                    <h4 class="widget-title">Quick Browse</h4>
+                                    <ul class="widget-link">
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Faq</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Our Attorneys</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="widget contact-info-widget mb-55 wow fadeInUp" data-wow-delay=".5s">
+                                    <h4 class="widget-title">Contact Us</h4>
+                                    <div class="info-widget-content mb-10">
+                                        <p>
+                                            <i class="fal fa-phone"></i>+92 @Model.HomeNavbar.PhoneNumber
+                                        </p>
+                                        <p>
+                                            <i class="fal fa-envelope"></i>@Model.HomeNavbar.Email
+                                        </p>
+                                        <p><i class="fal fa-map-marker-alt"></i>@Model.HomeNavbar.Address</p>
+                                    </div>
+                                    <div class="info-widget-content">
+                                        <h4>Opening Hour</h4>
+                                        <p><i class="fal fa-clock"></i>Sat - Sun | 08AM - 10PM</p>
+                                        <h5>Monday Closed</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <a href="#" class="back-to-top"><i class="far fa-angle-double-up"></i></a>
+
+    </div>
+   
+</body>
+</html>

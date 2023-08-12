@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TheVaqeel.Website.Models.ContactUs>
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var i = 1;
+}
+
+<div id="FaqsContent" class="pt-3">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="FAQs" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.O</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Subject</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var faq in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@faq.Name</td>
+                                            <td>@faq.Email</td>
+                                            <td>@faq.Subject</td>
+                                            <td>@faq.Message</td>
+                                            <td>
+                                                <button class="btn btn-danger DeleteFaqBtn" data-id="@faq.Id"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        i = i + 1;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $(document).ready(function () {
+        let table = new DataTable("#FAQs");
+          $(".DeleteFaqBtn").click(function () {
+            swal("","Are you sure you want to delete this Query?","warning", {
+                dangerMode: true,
+                buttons: true,
+            });
+            Id = $(this).attr("data-id");
+            $(".swal-button--danger").click(function () {
+                $.ajax({
+                    url: "@Url.Action("DeleteContactQuery","Admin")",
+                    method: "Post",
+                    data: {
+                        id: Id
+                    }
+                }).done(function (response) {
+                    $("#exampleModalDelete").modal("toggle");
+                    $("#FaqsContent").html(response);
+                    swal("Good Job!", "Data Deleted Successfully", "success");
+                });
+            });
+
+        });
+    });
+
+</script>
